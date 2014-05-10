@@ -5,13 +5,17 @@ import random
 
 #opening files and setting parameters
 #info file
-userinfo=open('c:/users/admin/desktop/abc.txt', 'r')
+userinfo=open('c:/users/admin/desktop/maininfo.txt', 'r')
 userlist=userinfo.readlines()
 userinfo.close()
 #joke file
 jokefile=open('c:/users/admin/desktop/jokeben.txt', 'r')
 jokelist=jokefile.readlines()
 jokefile.close()
+#dislike words file
+dislikefile=open('c:/users/admin/desktop/dislikewords.txt', 'r')
+dislikelist=dislikefile.readlines()
+dislikefile.close()
 
 #defining variables
 datefix=str(datetime.datetime.now().strftime("%d-%m"))
@@ -27,6 +31,9 @@ me='benedict'
 mes='ben'
 
 #startup code
+dislikelist2=[]
+for item in dislikelist:
+    dislikelist2.append(item[:-1])
 if uname=='First name' or uname=='' or usurname=='Last name' or udate=='DD' or upassword=='Password' or upassword=='':
    raw_input("Before you start using Benedict, please update your personal information using the 'Benedict AI - Settings' dialog. Press enter to exit.")
    toggle="1"
@@ -47,10 +54,13 @@ while 1:
       if order=="/bye/":
          break
       elif "joke" in order:
-         while 1:
-            jokenumber=int(random.randint(1, 206))
-            if jokenumber % 2==0:
-               pass
-            else:
-               print("\n"+jokelist[jokenumber][:-1]+"\n")
-               break
+         if any(item in order for item in dislikelist2):
+            print "\nWhy not?\n"
+         else:
+            while 1:
+               jokenumber=int(random.randint(1, 206))
+               if jokenumber % 2==0:
+                  pass
+               else:
+                  print("\n"+jokelist[jokenumber][:-1]+"\n")
+                  break
