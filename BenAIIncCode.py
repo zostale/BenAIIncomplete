@@ -1,3 +1,10 @@
+#This is my canvas, this is my art.
+#----------INFO-----------
+#Benedict : Artificial Intelligence (Incomplete Code)
+#Created by Nirman Dave
+#Written in python 2.7.6
+#Visit www.sourcenet.blogspot.com
+#----------CODE-----------
 #importing modules
 import time
 import datetime
@@ -64,3 +71,4 @@ while 1:
                else:
                   print("\n"+jokelist[jokenumber][:-1]+"\n")
                   break
+#---------BROKEN----------
