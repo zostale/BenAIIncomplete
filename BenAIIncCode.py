@@ -1,13 +1,13 @@
 #This is my canvas, this is my art.
 
 """
-Name:                           Benedict&Pack
+Name:                         Benedict&Pack
 Description:                  An artificial intelligence system that conducts basic functions.
-                                     The package allows anyone to replicate this system, using few
-                                     lines of code and embed into apps.
-Author:                         Nirman Dave
-Publisher:                     SourceNet
-Publisher's website:    www.sourcenet.in
+                              The package allows anyone to replicate this system, using few
+                              lines of code and embed into apps.
+Author:                       Nirman Dave
+Publisher:                    SourceNet
+Publisher's website:          www.sourcenet.in
 
 Copyright notice, terms & conditions:
 (c) Copyrights 2014 by Nirman Dave. All rights reserved.
