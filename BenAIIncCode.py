@@ -1,10 +1,22 @@
 #This is my canvas, this is my art.
-#----------INFO-----------
-#Benedict : Artificial Intelligence (Incomplete Code)
-#Created by Nirman Dave
-#Written in python 2.7.6
-#Visit www.sourcenet.blogspot.com
-#----------CODE-----------
+
+"""
+Name:                           Benedict&Pack
+Description:                  An artificial intelligence system that conducts basic functions.
+                                     The package allows anyone to replicate this system, using few
+                                     lines of code and embed into apps.
+Author:                         Nirman Dave
+Publisher:                     SourceNet
+Publisher's website:    www.sourcenet.in
+
+Copyright notice, terms & conditions:
+(c) Copyrights 2014 by Nirman Dave. All rights reserved.
+This work may be modified, reproduced, distributed, performed, and displayed for any purpose
+but must acknowledge "Nirman Dave", "SourceNet" and "Benedict&Pack". Copyright is retained
+and must be preserved. The work is provided as is; no warranty is provided, and users accept all
+the liability.
+"""
+
 #importing modules
 import time
 import datetime
@@ -12,15 +24,15 @@ import random
 
 #opening files and setting parameters
 #info file
-userinfo=open('c:/users/admin/desktop/maininfo.txt', 'r')
+userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.txt', 'r')
 userlist=userinfo.readlines()
 userinfo.close()
 #joke file
-jokefile=open('c:/users/admin/desktop/jokeben.txt', 'r')
+jokefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/jokeben.txt', 'r')
 jokelist=jokefile.readlines()
 jokefile.close()
 #dislike words file
-dislikefile=open('c:/users/admin/desktop/dislikewords.txt', 'r')
+dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikewords.txt', 'r')
 dislikelist=dislikefile.readlines()
 dislikefile.close()
 
@@ -37,7 +49,7 @@ upassword=userlist[7][:-1]
 me='benedict'
 mes='ben'
 
-#startup code
+#startup code & greetings
 dislikelist2=[]
 for item in dislikelist:
     dislikelist2.append(item[:-1])
@@ -58,8 +70,12 @@ while 1:
    else:
       order1=raw_input(">>>| ")
       order=str(order1.lower())
+
+#Ending Code
       if order=="/bye/":
          break
+
+#Joke Code
       elif "joke" in order:
          if any(item in order for item in dislikelist2):
             print "\nWhy not?\n"
@@ -69,6 +85,26 @@ while 1:
                if jokenumber % 2==0:
                   pass
                else:
-                  print("\n"+jokelist[jokenumber][:-1]+"\n")
+                  print ("\n"+jokelist[jokenumber][:-1]+"\n")
                   break
-#---------BROKEN----------
+
+#Weather Code
+    #weather
+
+#Math functions code all
+    #math
+
+#Math pattern indentifier
+    #pattern
+
+#Reminder code
+    #reminders
+
+#Colloquial 
+    #colloquial response (time consuming)
+
+#Search code
+    #search things in computer and open if defined
+
+#Web and surf code
+    #codes to surf the web, search images, videos this and that!
