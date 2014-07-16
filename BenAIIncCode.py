@@ -22,6 +22,8 @@ the liability.
 import time
 import datetime
 import random
+import pywapi
+import string
 
 #opening files and setting parameters
 #info file
@@ -88,10 +90,25 @@ while 1:
                else:
                   print ("\n"+jokelist[jokenumber][:-1]+"\n")
                   break
-
-#Weather Code
-    #weather
-
+                
+#Weather code
+      elif "weather in" in order:
+          weatherstring=order.index('n')
+          weatherlocation=order[(int(weatherstring)+2):]
+          lookup = pywapi.get_location_ids(weatherlocation)
+          for i in lookup:
+              location_id = i
+          weather_com_result = pywapi.get_weather_from_weather_com(location_id)
+          print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
+      elif "weather of" in order:
+          weatherstring=order.index('f')
+          weatherlocation=order[(int(weatherstring)+2):]
+          lookup = pywapi.get_location_ids(weatherlocation)
+          for i in lookup:
+              location_id = i
+          weather_com_result = pywapi.get_weather_from_weather_com(location_id)
+          print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
+          
 #Math functions code all
     #math
 
