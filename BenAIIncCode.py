@@ -52,6 +52,53 @@ upassword=userlist[7][:-1]
 me='benedict'
 mes='ben'
 
+#defining functions: MATH
+#addition
+def benadd(a):
+    if '+' in a:
+        slicer=a.index('+')
+        num1=a[:int(slicer)]
+        num2=a[int(slicer)+1:]
+        print (int(num1))+(int(num2))
+    else:
+        print "math error"
+#subtraction
+def bensub(b):
+    if '-' in b:
+        slicer=b.index('-')
+        num1=b[:int(slicer)]
+        num2=b[int(slicer)+1:]
+        print (int(num1))-(int(num2))
+    else:
+        print "math error"
+#multiplication
+def benmultiply(c):
+    if '*' in c:
+        slicer=c.index('*')
+        num1=c[:int(slicer)]
+        num2=c[int(slicer)+1:]
+        print (int(num1))*(int(num2))
+    else:
+        print "math error"
+#division
+def bendiv(d):
+    if '/' in d:
+        slicer=d.index('/')
+        num1=d[:int(slicer)]
+        num2=d[int(slicer)+1:]
+        print (int(num1))/(int(num2))
+    else:
+        print "math error"
+#power
+def benpow(e):
+    if '^' in e:
+        slicer=e.index('^')
+        num1=e[:int(slicer)]
+        num2=e[int(slicer)+1:]
+        print (int(num1))**(int(num2))
+    else:
+        print "math error"
+
 #startup code & greetings
 dislikelist2=[]
 for item in dislikelist:
@@ -108,10 +155,48 @@ while 1:
               location_id = i
           weather_com_result = pywapi.get_weather_from_weather_com(location_id)
           print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
-          
-#Math functions code all
-    #math
 
+#Math code
+ #input: what is
+      elif order[:8]=="what is ":
+          mathorder=order[8:]
+          if '+' in mathorder:
+              benadd(mathorder)
+          elif '*' in mathorder:
+              benmultiply(mathorder)
+          elif '-' in mathorder:
+              bensub(mathorder)
+          elif '/' in mathorder:
+              bendiv(mathorder)
+          elif '^' in mathorder:
+              benpow(mathorder)
+ #input: whats              
+      elif order[:5]=="whats":
+          mathorder=order[5:]
+          if '+' in mathorder:
+              benadd(mathorder)
+          elif '*' in mathorder:
+              benmultiply(mathorder)
+          elif '-' in mathorder:
+              bensub(mathorder)
+          elif '/' in mathorder:
+              bendiv(mathorder)
+          elif '^' in mathorder:
+              benpow(mathorder)
+ #input: what's
+      elif order[:6]=="what's":
+          mathorder=order[6:]
+          if '+' in mathorder:
+              benadd(mathorder)
+          elif '*' in mathorder:
+              benmultiply(mathorder)
+          elif '-' in mathorder:
+              bensub(mathorder)
+          elif '/' in mathorder:
+              bendiv(mathorder)
+          elif '^' in mathorder:
+              benpow(mathorder)
+              
 #Math pattern indentifier
     #pattern
 
