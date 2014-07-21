@@ -24,6 +24,8 @@ import datetime
 import random
 import pywapi
 import string
+import os
+from os.path import join
 
 #opening files and setting parameters
 #info file
@@ -196,7 +198,26 @@ while 1:
               bendiv(mathorder)
           elif '^' in mathorder:
               benpow(mathorder)
-              
+
+#Search code
+      elif "search" in order:
+          searchstring=order.index('h')
+          searchlocation=order[(int(searchstring)+2):]
+          driveletter=raw_input("Which drive should I look into? [Drive letter] : ")
+          print "\nPlease wait, while I look for your file..."
+          for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+              pass
+              if searchlocation in files:
+                  foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                  print foundnotice
+                  openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                  if openoption.lower()=="y":
+                      os.startfile(str(foundnotice[13:]))
+                  elif openoption.lower()=="n":
+                      pass
+                  else:
+                      print "\nInvalid answer"
+                
 #Math pattern indentifier
     #pattern
 
