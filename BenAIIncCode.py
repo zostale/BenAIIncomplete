@@ -4,13 +4,13 @@
 Name:                         Benedict&Pack
 Version:                      1.0
 Author:                       Nirman Dave
-Contributor(s):               Name          | Contribution
-                              Rahul Agarwal : Weather Code
 Description:                  An artificial intelligence system that conducts basic functions.
                               The package allows anyone to replicate this system, using few
                               lines of code and embed into apps.
 Publisher:                    SourceNet
 Publisher's website:          www.sourcenet.in
+Contributor(s):               Name          | Contribution
+                              Rahul Agarwal : Weather Code
 
 Copyright notice, terms & conditions:
 (c) Copyrights 2014 by Nirman Dave. All rights reserved.
