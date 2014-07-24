@@ -4,19 +4,20 @@
 Name:                         Benedict&Pack: Find File Listing System (FFLS)
 Version:                      1.0
 Author:                       Nirman Dave
-Description:                  FFLS is a part of the Benedict&Pack which is an artificial intelligence system that conducts basic functions.
-                              The package allows anyone to replicate this system, using few
-                              lines of code and embed into apps.
-                              FFLS is a simple file search and listing system, that pops up when the user defines file search.
+Description:                  FFLS is a part of the Benedict&Pack which is an artificial intelligence system 
+                              that conducts basic functions. The package allows anyone to replicate this system,
+                              using few lines of code and embed into apps.
+                              FFLS is a simple file search and listing system, that pops up when the user defines 
+                              file search.
 Publisher:                    SourceNet
 Publisher's website:          www.sourcenet.in
 
 Copyright notice, terms & conditions:
 (c) Copyrights 2014 by Nirman Dave. All rights reserved.
 This work may be modified, reproduced, distributed, performed, and displayed for any purpose
-but must acknowledge "Nirman Dave", "SourceNet" and "Benedict&Pack". Copyright is retained
-and must be preserved. The work is provided as is; no warranty is provided, and users accept all
-the liability.
+but must acknowledge "Nirman Dave", "SourceNet", "Benedict&Pack" and "Benedict&Pack: FFLS". 
+Copyright is retained and must be preserved. The work is provided as is; no warranty is provided,
+and users accept all the liability.
 """
 
 #importing modules
