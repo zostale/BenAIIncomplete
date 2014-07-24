@@ -25,7 +25,7 @@ import os
 from os.path import join
 
 #opening predefined and prewritten files
-findfile=open('$system/findfile.txt', 'r')
+findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'r')
 listme=findfile.readlines()
 findfile.close()
 
