@@ -1,5 +1,3 @@
-![alt tag](http://users14.jabry.com/nirman1234/bensearch.gif)
-
 Name
 ===============
 
