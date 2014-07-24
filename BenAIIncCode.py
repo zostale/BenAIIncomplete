@@ -224,7 +224,7 @@ while 1:
           findfile.write(str(searchlocation) + "\n" + str(driveletter))
           findfile.close()
           print "\nPlease wait, while I look for your file..."
-          os.startfile("$system/findfiletry.py")
+          os.startfile("$system/FindFileList.py")
           for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
               pass
               if searchlocation in files:
