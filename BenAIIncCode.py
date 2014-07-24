@@ -8,8 +8,8 @@ Description:                  An artificial intelligence system that conducts ba
                               The package allows anyone to replicate this system, using few
                               lines of code and embed into apps.
 Contributor(s):               Name                          | Contribution
-                              Rahul Agarwal                 : Information on weather APIs available and coded
-                                                              basic weather API implementation code.
+                              Rahul Agarwal                 : Gathered information on weather APIs and coded
+                                                              the 'basic weather API implementation code'.
                               
                                                               
 Publisher:                    SourceNet
@@ -34,17 +34,19 @@ from os.path import join
 
 #opening files and setting parameters
 #info file
-userinfo=open('$system/maininfo.txt', 'r')
+userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.txt', 'r')
 userlist=userinfo.readlines()
 userinfo.close()
 #joke file
-jokefile=open('$systemjokeben.txt', 'r')
+jokefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/jokeben.txt', 'r')
 jokelist=jokefile.readlines()
 jokefile.close()
 #dislike words file
-dislikefile=open('$system/dislikewords.txt', 'r')
+dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikewords.txt', 'r')
 dislikelist=dislikefile.readlines()
 dislikefile.close()
+#activity log (machine learning purposes)
+activitylog=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/activity.txt', 'w')
 
 #defining variables
 datefix=str(datetime.datetime.now().strftime("%d-%m"))
@@ -106,7 +108,7 @@ def benpow(e):
     else:
         print "math error"
 
-#startup code & greetings
+#Startup code & greetings
 dislikelist2=[]
 for item in dislikelist:
     dislikelist2.append(item[:-1])
@@ -126,11 +128,14 @@ while 1:
       break
    else:
       order1=raw_input("You: ")
-      order=str(order1.lower())
+      order2=order1.replace("?", "")
+      order=str(order2.lower())
+      activitylog.write(str(order)+"\n")
 
 #Ending Code
-      if order=="/bye/":
-         break
+      if order=="bye" or order=="/bye/":
+        activitylog.close()
+        break
 
 #Joke Code
       elif "joke" in order:
@@ -146,28 +151,19 @@ while 1:
                   break
                 
 #Weather code
-      elif "weather in" in order:
-          n=order.index('in')
-          weatherstring=str([i for (i, c) in enumerate(order) if c=='i' and n <= i <= n+len('in')])
-          weatherlocation=order[(int(weatherstring[1:-1])+3):]
-          lookup = pywapi.get_location_ids(weatherlocation)
-          for i in lookup:
-              location_id = i
-          weather_com_result = pywapi.get_weather_from_weather_com(location_id)
-          print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
-      elif "weather of" in order:
-          n=order.index('of')
-          weatherstring=str([i for (i, c) in enumerate(order) if c=='o' and n <= i <= n+len('of')])
-          weatherlocation=order[(int(weatherstring[1:-1])+3):]
-          lookup = pywapi.get_location_ids(weatherlocation)
-          for i in lookup:
-              location_id = i
-          weather_com_result = pywapi.get_weather_from_weather_com(location_id)
-          print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
-      elif "weather at" in order:
-          n=order.rindex('at')
-          weatherstring=str([i for (i, c) in enumerate(order) if c=='a' and n <= i <= n+len('at')])
-          weatherlocation=order[(int(weatherstring[1:-1])+3):]
+      elif "weather" in order:
+          if "in" in order:
+              n=order.index('in')
+              weatherstring=str([i for (i, c) in enumerate(order) if c=='i' and n <= i <= n+len('in')])
+              weatherlocation=order[(int(weatherstring[1:-1])+3):]
+          elif "of" in order:  
+              n=order.index('of')
+              weatherstring=str([i for (i, c) in enumerate(order) if c=='o' and n <= i <= n+len('of')])
+              weatherlocation=order[(int(weatherstring[1:-1])+3):]
+          elif "at" in order:
+              n=order.rindex('at')
+              weatherstring=str([i for (i, c) in enumerate(order) if c=='a' and n <= i <= n+len('at')])
+              weatherlocation=order[(int(weatherstring[1:-1])+3):]
           lookup = pywapi.get_location_ids(weatherlocation)
           for i in lookup:
               location_id = i
@@ -215,16 +211,22 @@ while 1:
           elif '^' in mathorder:
               benpow(mathorder)
 
-#Search code
+#File search code
       elif "search" in order:
-          searchstring=order.index('h')
-          searchlocation=order[(int(searchstring)+2):]
+          if "for" in order:
+              n=order.rindex('for')
+              searchstring=str([i for (i, c) in enumerate(order) if c=='r' and n <= i <= n+len('for')])
+              searchlocation=order[(int(searchstring[1:-1])+2):]
+          else:
+              n=order.index('search')
+              searchstring=str([i for (i, c) in enumerate(order) if c=='h' and n <= i <= n+len('search')])
+              searchlocation=order[(int(searchstring[1:-1])+2):]
           driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
-          findfile=open('$system/findfile.txt', 'w')
+          findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
           findfile.write(str(searchlocation) + "\n" + str(driveletter))
           findfile.close()
           print "\nPlease wait, while I look for your file..."
-          os.startfile("$system/FindFileList.py")
+          os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
           for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
               pass
               if searchlocation in files:
