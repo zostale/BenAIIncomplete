@@ -19,21 +19,21 @@ and must be preserved. The work is provided as is; no warranty is provided, and 
 the liability.
 """
 
-# Opening predefined and prewritten files
+#importing modules
+import os
+from os.path import join
+
+#opening predefined and prewritten files
 findfile=open('$system/findfile.txt', 'r')
 listme=findfile.readlines()
 findfile.close()
 
-# Importing modules
-import os
-from os.path import join
-
-# Conducting the search operation
+#conducting the search operation
 lookfor = str(listme[0][:-1])
 for root, dirs, files in os.walk(str(str(listme[1])+':\\')):
-    # Listing the search locations
+    #listing the search locations
     print "Searching file in: ", root
     if lookfor in files:
-        # Listing the search result
+        #listing the search result
         print "found: %s" % join(root, lookfor)
         break
