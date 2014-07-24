@@ -20,7 +20,7 @@ the liability.
 """
 
 # Opening predefined and prewritten files
-findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'r')
+findfile=open('$system/findfile.txt', 'r')
 listme=findfile.readlines()
 findfile.close()
 
