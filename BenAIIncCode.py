@@ -7,10 +7,13 @@ Author:                       Nirman Dave
 Description:                  An artificial intelligence system that conducts basic functions.
                               The package allows anyone to replicate this system, using few
                               lines of code and embed into apps.
+Contributor(s):               Name                          | Contribution
+                              Rahul Agarwal                 : Information on weather APIs available and coded
+                                                              basic weather API implementation code.
+                              
+                                                              
 Publisher:                    SourceNet
 Publisher's website:          www.sourcenet.in
-Contributor(s):               Name          | Contribution
-                              Rahul Agarwal : Weather Code
 
 Copyright notice, terms & conditions:
 (c) Copyrights 2014 by Nirman Dave. All rights reserved.
@@ -31,15 +34,15 @@ from os.path import join
 
 #opening files and setting parameters
 #info file
-userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.txt', 'r')
+userinfo=open('$system/maininfo.txt', 'r')
 userlist=userinfo.readlines()
 userinfo.close()
 #joke file
-jokefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/jokeben.txt', 'r')
+jokefile=open('$systemjokeben.txt', 'r')
 jokelist=jokefile.readlines()
 jokefile.close()
 #dislike words file
-dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikewords.txt', 'r')
+dislikefile=open('$system/dislikewords.txt', 'r')
 dislikelist=dislikefile.readlines()
 dislikefile.close()
 
@@ -122,7 +125,7 @@ while 1:
    if toggle=="1":
       break
    else:
-      order1=raw_input(">>>| ")
+      order1=raw_input("You: ")
       order=str(order1.lower())
 
 #Ending Code
@@ -144,16 +147,27 @@ while 1:
                 
 #Weather code
       elif "weather in" in order:
-          weatherstring=order.index('n')
-          weatherlocation=order[(int(weatherstring)+2):]
+          n=order.index('in')
+          weatherstring=str([i for (i, c) in enumerate(order) if c=='i' and n <= i <= n+len('in')])
+          weatherlocation=order[(int(weatherstring[1:-1])+3):]
           lookup = pywapi.get_location_ids(weatherlocation)
           for i in lookup:
               location_id = i
           weather_com_result = pywapi.get_weather_from_weather_com(location_id)
           print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
       elif "weather of" in order:
-          weatherstring=order.index('f')
-          weatherlocation=order[(int(weatherstring)+2):]
+          n=order.index('of')
+          weatherstring=str([i for (i, c) in enumerate(order) if c=='o' and n <= i <= n+len('of')])
+          weatherlocation=order[(int(weatherstring[1:-1])+3):]
+          lookup = pywapi.get_location_ids(weatherlocation)
+          for i in lookup:
+              location_id = i
+          weather_com_result = pywapi.get_weather_from_weather_com(location_id)
+          print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
+      elif "weather at" in order:
+          n=order.rindex('at')
+          weatherstring=str([i for (i, c) in enumerate(order) if c=='a' and n <= i <= n+len('at')])
+          weatherlocation=order[(int(weatherstring[1:-1])+3):]
           lookup = pywapi.get_location_ids(weatherlocation)
           for i in lookup:
               location_id = i
@@ -205,8 +219,12 @@ while 1:
       elif "search" in order:
           searchstring=order.index('h')
           searchlocation=order[(int(searchstring)+2):]
-          driveletter=raw_input("Which drive should I look into? [Drive letter] : ")
+          driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+          findfile=open('$system/findfile.txt', 'w')
+          findfile.write(str(searchlocation) + "\n" + str(driveletter))
+          findfile.close()
           print "\nPlease wait, while I look for your file..."
+          os.startfile("$system/findfiletry.py")
           for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
               pass
               if searchlocation in files:
@@ -215,8 +233,10 @@ while 1:
                   openoption=raw_input("\nShould I open the file location? [Y/N] : ")
                   if openoption.lower()=="y":
                       os.startfile(str(foundnotice[13:]))
+                      print ""
                   elif openoption.lower()=="n":
                       pass
+                      print ""
                   else:
                       print "\nInvalid answer"
                 
