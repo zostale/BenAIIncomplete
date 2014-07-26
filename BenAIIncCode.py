@@ -8,8 +8,8 @@ Description:                  An artificial intelligence system that conducts ba
                               The package allows anyone to replicate this system, using few
                               lines of code and embed into apps.
 Contributor(s):               Name                          | Contribution
-                              Rahul Agarwal                 : Gathered information on weather APIs and coded
-                                                              the 'basic weather API implementation code'.
+                              Rahul Agarwal                 : Helped in finding Weather and Wikipedia API for python.
+                                                              Also contributed to the weather code.
                               
                                                               
 Publisher:                    SourceNet
@@ -31,22 +31,31 @@ import pywapi
 import string
 import os
 from os.path import join
+import wikipedia
 
 #opening files and setting parameters
 #info file
-userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.txt', 'r')
+userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.ben', 'r')
 userlist=userinfo.readlines()
 userinfo.close()
 #joke file
-jokefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/jokeben.txt', 'r')
+jokefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/jokes.ben', 'r')
 jokelist=jokefile.readlines()
 jokefile.close()
 #dislike words file
-dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikewords.txt', 'r')
-dislikelist=dislikefile.readlines()
+dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikewords.ben', 'r')
+dislikelistraw=dislikefile.readlines()
 dislikefile.close()
+#user agree file
+agreefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/agree.ben', 'r')
+agreelistraw=agreefile.readlines()
+agreefile.close()
+#user disagree file
+disagreefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/disagree.ben', 'r')
+disagreelistraw=disagreefile.readlines()
+disagreefile.close()
 #activity log (machine learning purposes)
-activitylog=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/activity.txt', 'w')
+activitylog=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/activity.ben', 'a')
 
 #defining variables
 datefix=str(datetime.datetime.now().strftime("%d-%m"))
@@ -108,10 +117,18 @@ def benpow(e):
     else:
         print "math error"
 
-#Startup code & greetings
-dislikelist2=[]
-for item in dislikelist:
-    dislikelist2.append(item[:-1])
+#tweaking lists
+dislikelist=[]
+for item in dislikelistraw:
+    dislikelist.append(item[:-1])
+agreelist=[]
+for item in agreelistraw:
+    agreelist.append(item[:-1])
+disagreelist=[]
+for item in disagreelistraw:
+    disagreelist.append(item[:-1])
+
+#startup code and greetings
 if uname=='First name' or uname=='' or usurname=='Last name' or udate=='DD' or upassword=='Password' or upassword=='':
    raw_input("Before you start using Benedict, please update your personal information using the 'Benedict AI - Settings' dialog. Press enter to exit.")
    toggle="1"
@@ -139,7 +156,7 @@ while 1:
 
 #Joke Code
       elif "joke" in order:
-         if any(item in order for item in dislikelist2):
+         if any(item in order for item in dislikelist):
             print "\nWhy not?\n"
          else:
             while 1:
@@ -171,35 +188,9 @@ while 1:
           print "\nIt is " + string.lower(weather_com_result['current_conditions']['text']) + " and " + weather_com_result['current_conditions']['temperature'] + "*C now in " + weatherlocation + "\n"
 
 #Math code
- #input: what is
-      elif order[:8]=="what is ":
-          mathorder=order[8:]
-          if '+' in mathorder:
-              benadd(mathorder)
-          elif '*' in mathorder:
-              benmultiply(mathorder)
-          elif '-' in mathorder:
-              bensub(mathorder)
-          elif '/' in mathorder:
-              bendiv(mathorder)
-          elif '^' in mathorder:
-              benpow(mathorder)
- #input: whats              
-      elif order[:5]=="whats":
-          mathorder=order[5:]
-          if '+' in mathorder:
-              benadd(mathorder)
-          elif '*' in mathorder:
-              benmultiply(mathorder)
-          elif '-' in mathorder:
-              bensub(mathorder)
-          elif '/' in mathorder:
-              bendiv(mathorder)
-          elif '^' in mathorder:
-              benpow(mathorder)
- #input: what's
-      elif order[:6]=="what's":
-          mathorder=order[6:]
+ #input: math              
+      elif order[:4]=="math":
+          mathorder=order[4:]
           if '+' in mathorder:
               benadd(mathorder)
           elif '*' in mathorder:
@@ -211,37 +202,78 @@ while 1:
           elif '^' in mathorder:
               benpow(mathorder)
 
-#File search code
+#File and web search code
       elif "search" in order:
-          if "for" in order:
+          if "information" in order:
+            if "about" in order:
+              n=order.index('about')
+              infostring=str([i for (i, c) in enumerate(order) if c=='t' and n <= i <= n+len('about')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
+            else:
+              n=order.index('information')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('information')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print wikipedia.summary(str(infotitle))
+          elif "for" in order:
               n=order.rindex('for')
               searchstring=str([i for (i, c) in enumerate(order) if c=='r' and n <= i <= n+len('for')])
               searchlocation=order[(int(searchstring[1:-1])+2):]
+              driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+              findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
+              findfile.write(str(searchlocation) + "\n" + str(driveletter))
+              findfile.close()
+              print "\nPlease wait, while I look for your file..."
+              os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
+              for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+                  pass
+                  if searchlocation in files:
+                      foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                      print foundnotice
+                      openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                      if openoption.lower()=="y":
+                          os.startfile(str(foundnotice[13:]))
+                          print ""
+                      elif openoption.lower()=="n":
+                          print ""
+                          pass
+                      else:
+                          print "\nInvalid answer"
           else:
               n=order.index('search')
               searchstring=str([i for (i, c) in enumerate(order) if c=='h' and n <= i <= n+len('search')])
               searchlocation=order[(int(searchstring[1:-1])+2):]
-          driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
-          findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
-          findfile.write(str(searchlocation) + "\n" + str(driveletter))
-          findfile.close()
-          print "\nPlease wait, while I look for your file..."
-          os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
-          for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
-              pass
-              if searchlocation in files:
-                  foundnotice=str("\nFile found: %s" % join(root, searchlocation))
-                  print foundnotice
-                  openoption=raw_input("\nShould I open the file location? [Y/N] : ")
-                  if openoption.lower()=="y":
-                      os.startfile(str(foundnotice[13:]))
-                      print ""
-                  elif openoption.lower()=="n":
-                      pass
-                      print ""
-                  else:
-                      print "\nInvalid answer"
-                
+              driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+              findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
+              findfile.write(str(searchlocation) + "\n" + str(driveletter))
+              findfile.close()
+              print "\nPlease wait, while I look for your file..."
+              os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
+              for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+                  pass
+                  if searchlocation in files:
+                      foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                      print foundnotice
+                      openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                      if openoption.lower()=="y":
+                          os.startfile(str(foundnotice[13:]))
+                          print ""
+                      elif openoption.lower()=="n":
+                          print ""
+                          pass
+                      else:
+                          print "\nInvalid answer"
+ 
+
+
 #Math pattern indentifier
     #pattern
 
