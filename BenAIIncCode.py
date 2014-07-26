@@ -47,9 +47,9 @@ dislikefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/dislikew
 dislikelistraw=dislikefile.readlines()
 dislikefile.close()
 #user agree file
-agreefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/agree.ben', 'r')
-agreelistraw=agreefile.readlines()
-agreefile.close()
+whatfile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/what.ben', 'r')
+whatlistraw=whatfile.readlines()
+whatfile.close()
 #user disagree file
 disagreefile=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/disagree.ben', 'r')
 disagreelistraw=disagreefile.readlines()
@@ -121,9 +121,9 @@ def benpow(e):
 dislikelist=[]
 for item in dislikelistraw:
     dislikelist.append(item[:-1])
-agreelist=[]
-for item in agreelistraw:
-    agreelist.append(item[:-1])
+whatlist=[]
+for item in whatlistraw:
+    whatlist.append(item[:-1])
 disagreelist=[]
 for item in disagreelistraw:
     disagreelist.append(item[:-1])
@@ -202,9 +202,67 @@ while 1:
           elif '^' in mathorder:
               benpow(mathorder)
 
-#File and web search code
+#Web search using key: "what"
+      elif "what" in order:
+        if "is" in order:
+          n=order.index('is')
+          infostring=str([i for (i, c) in enumerate(order) if c=='s' and n <= i <= n+len('is')])
+          infotitle=order[(int(infostring[1:-1])+2):]
+          print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+          moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+          if moreinfo.lower()=="y":
+            print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+          elif moreinfo.lower()=="n":
+            print ""
+            pass
+          else:
+            print "\ninvalid answer"
+        elif "was" in order:
+          n=order.index('was')
+          infostring=str([i for (i, c) in enumerate(order) if c=='s' and n <= i <= n+len('was')])
+          infotitle=order[(int(infostring[1:-1])+2):]
+          print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+          moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+          if moreinfo.lower()=="y":
+            print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+          elif moreinfo.lower()=="n":
+            print ""
+            pass
+          else:
+            print "\ninvalid answer"
+      
+#Web search using key: "who"
+      elif "who" in order:
+        if "is" in order:
+          n=order.index('is')
+          infostring=str([i for (i, c) in enumerate(order) if c=='s' and n <= i <= n+len('is')])
+          infotitle=order[(int(infostring[1:-1])+2):]
+          print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+          moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+          if moreinfo.lower()=="y":
+            print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+          elif moreinfo.lower()=="n":
+            print ""
+            pass
+          else:
+            print "\ninvalid answer"
+        elif "was" in order:
+          n=order.index('was')
+          infostring=str([i for (i, c) in enumerate(order) if c=='s' and n <= i <= n+len('was')])
+          infotitle=order[(int(infostring[1:-1])+2):]
+          print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+          moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+          if moreinfo.lower()=="y":
+            print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+          elif moreinfo.lower()=="n":
+            print ""
+            pass
+          else:
+            print "\ninvalid answer"
+      
+#PC and web search using key: "Search"
       elif "search" in order:
-          if "information" in order:
+          if "info" in order:
             if "about" in order:
               n=order.index('about')
               infostring=str([i for (i, c) in enumerate(order) if c=='t' and n <= i <= n+len('about')])
@@ -218,11 +276,45 @@ while 1:
                 pass
               else:
                 print "\ninvalid answer"
+            elif "on" in order:
+              n=order.rindex('on')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('on')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"  
+            elif "of" in order:
+              n=order.index('of')
+              infostring=str([i for (i, c) in enumerate(order) if c=='f' and n <= i <= n+len('of')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"             
             else:
               n=order.index('information')
               infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('information')])
               infotitle=order[(int(infostring[1:-1])+2):]
-              print wikipedia.summary(str(infotitle))
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
           elif "for" in order:
               n=order.rindex('for')
               searchstring=str([i for (i, c) in enumerate(order) if c=='r' and n <= i <= n+len('for')])
@@ -272,6 +364,189 @@ while 1:
                       else:
                           print "\nInvalid answer"
  
+#PC and web search using key: "find"
+      elif "find" in order:
+          if "info" in order:
+            if "about" in order:
+              n=order.index('about')
+              infostring=str([i for (i, c) in enumerate(order) if c=='t' and n <= i <= n+len('about')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
+            elif "on" in order:
+              n=order.rindex('on')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('on')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"  
+            elif "of" in order:
+              n=order.index('of')
+              infostring=str([i for (i, c) in enumerate(order) if c=='f' and n <= i <= n+len('of')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"             
+            else:
+              n=order.index('information')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('information')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
+          elif "file" in order:
+              n=order.rindex('file')
+              searchstring=str([i for (i, c) in enumerate(order) if c=='e' and n <= i <= n+len('file')])
+              searchlocation=order[(int(searchstring[1:-1])+2):]
+              driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+              findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
+              findfile.write(str(searchlocation) + "\n" + str(driveletter))
+              findfile.close()
+              print "\nPlease wait, while I look for your file..."
+              os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
+              for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+                  pass
+                  if searchlocation in files:
+                      foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                      print foundnotice
+                      openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                      if openoption.lower()=="y":
+                          os.startfile(str(foundnotice[13:]))
+                          print ""
+                      elif openoption.lower()=="n":
+                          print ""
+                          pass
+                      else:
+                          print "\nInvalid answer"
+          else:
+              n=order.index('find')
+              searchstring=str([i for (i, c) in enumerate(order) if c=='d' and n <= i <= n+len('find')])
+              searchlocation=order[(int(searchstring[1:-1])+2):]
+              driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+              findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
+              findfile.write(str(searchlocation) + "\n" + str(driveletter))
+              findfile.close()
+              print "\nPlease wait, while I look for your file..."
+              os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
+              for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+                  pass
+                  if searchlocation in files:
+                      foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                      print foundnotice
+                      openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                      if openoption.lower()=="y":
+                          os.startfile(str(foundnotice[13:]))
+                          print ""
+                      elif openoption.lower()=="n":
+                          print ""
+                          pass
+                      else:
+                          print "\nInvalid answer"
+
+#PC and web search using key: "look"
+      elif "look" in order:
+          if "for info" in order:
+            if "about" in order:
+              n=order.index('about')
+              infostring=str([i for (i, c) in enumerate(order) if c=='t' and n <= i <= n+len('about')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
+            elif "on" in order:
+              n=order.rindex('on')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('on')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"  
+            elif "of" in order:
+              n=order.index('of')
+              infostring=str([i for (i, c) in enumerate(order) if c=='f' and n <= i <= n+len('of')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"             
+            else:
+              n=order.index('information')
+              infostring=str([i for (i, c) in enumerate(order) if c=='n' and n <= i <= n+len('information')])
+              infotitle=order[(int(infostring[1:-1])+2):]
+              print ("\n"+wikipedia.summary(str(infotitle), sentences=3) + "\n")
+              moreinfo=raw_input("Would you like to know more about "+str(infotitle) +"? [Y/N] : ")
+              if moreinfo.lower()=="y":
+                print ("\n"+wikipedia.summary(str(infotitle))+"\n")
+              elif moreinfo.lower()=="n":
+                print ""
+                pass
+              else:
+                print "\ninvalid answer"
+          elif "for" in order:
+              n=order.rindex('for')
+              searchstring=str([i for (i, c) in enumerate(order) if c=='r' and n <= i <= n+len('for')])
+              searchlocation=order[(int(searchstring[1:-1])+2):]
+              driveletter=raw_input("\nWhich drive should I look into? [Drive letter] : ")
+              findfile=open('D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfile.txt', 'w')
+              findfile.write(str(searchlocation) + "\n" + str(driveletter))
+              findfile.close()
+              print "\nPlease wait, while I look for your file..."
+              os.startfile("D:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/findfiletry.py")
+              for root, dirs, files in os.walk(str(str(driveletter)+':\\')):
+                  pass
+                  if searchlocation in files:
+                      foundnotice=str("\nFile found: %s" % join(root, searchlocation))
+                      print foundnotice
+                      openoption=raw_input("\nShould I open the file location? [Y/N] : ")
+                      if openoption.lower()=="y":
+                          os.startfile(str(foundnotice[13:]))
+                          print ""
+                      elif openoption.lower()=="n":
+                          print ""
+                          pass
+                      else:
+                          print "\nInvalid answer"
 
 
 #Math pattern indentifier
