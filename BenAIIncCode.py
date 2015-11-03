@@ -34,6 +34,7 @@ from os.path import join
 import wikipedia
 
 #opening files and setting parameters
+# To include the text files in shared folder 
 #info file
 userinfo=open('d:/Softwares/Nirman\'s Python/Benedict/Benedict/FILES/maininfo.ben', 'r')
 userlist=userinfo.readlines()
